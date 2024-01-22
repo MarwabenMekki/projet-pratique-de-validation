@@ -1,0 +1,32 @@
+<table class="table">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Timing</th>
+      <th scope="col">Employee</th>
+      <th scope="col" >status</th>
+      <th scope="col">Actions</th>
+
+    </tr>
+    <tr *ngFor="let task of tasks">
+      <td>{{task._id}}</td>
+      <td>{{task.title}}</td>
+      <td>{{task.description}}</td>
+      <td>{{task.timing}}</td>
+      <td>{{task.employee.firstName}} {{task.employee.lastName}}</td>
+      <td>{{task.status}}</td>
+      
+      <td>
+        <button type="button" class="btn btn-info" (click)="goToDisplay(task._id)">Display</button>
+          <button *ngIf="isLoggedIn() && user.role=='admin'" type="button" class="btn btn-warning" (click)="goToEdit(task._id)">Edit</button>
+          <button type="button" class="btn btn-danger" (click)="delete(task._id)" >Delete</button>
+          <button *ngIf="isLoggedIn() && user.role=='employee'" type="button" class="btn btn-warning" (click)="accept(task._id)" >accept</button>
+          <button *ngIf="isLoggedIn() && user.role=='employee'" type="button" class="btn btn-danger" (click)="refuse(task._id)" >refuse</button>
+
+        </td>
+     
+    </tr>
+
+</table>
+
